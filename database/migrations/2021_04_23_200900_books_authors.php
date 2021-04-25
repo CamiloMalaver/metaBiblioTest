@@ -17,7 +17,7 @@ class BooksAuthors extends Migration
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('author_id');
             
-            $table->foreign('book_id')->references('isbn')->on('books');
+            $table->foreign('book_id')->references('isbn')->on('books')->onDelete('cascade');
             $table->foreign('author_id')->references('id')->on('authors');
             $table->primary(['book_id', 'author_id']);
         });

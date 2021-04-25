@@ -49,14 +49,14 @@ class BookController extends Controller
                         $book_author = new Book_Authors($request->isbn, $author->id);
                         $book_author->save();
                     }     
-                    return json_encode([['Status'=>'Record saved.']]);
+                    return json_encode([['Result'=>'Record saved.']]);
                 }else{
-                    return json_encode([['Status'=>'Record already exists.']]); 
+                    return json_encode([['Result'=>'Record already exists.']]); 
                 }                  
                 
 
             }else{
-                return json_encode([['Status'=>'Resource not found.']]);
+                return json_encode([['Result'=>'Resource not found.']]);
             }
         }catch(Excepcion $e){
             
@@ -65,16 +65,6 @@ class BookController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -87,28 +77,7 @@ class BookController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -116,8 +85,15 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($isbn)
     {
-        //
+        if(Books::where('isbn', $isbn)->exists()){
+            $victim = Books::where('isbn',$isbn)->first();
+            $result = $victim->title;
+            Books::where('isbn',$isbn)->delete();
+            return json_encode([['Result'=>$result.' deleted']]);
+        }else{
+            return json_encode([['Result'=>'Book not found.']]);
+        }
     }
 }
