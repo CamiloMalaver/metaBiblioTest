@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/create', [BookController::class, 'create']);
+Route::post('books/create/{isbn}', [BookController::class, 'create']);
+Route::get('books', [BookController::class, 'index']);

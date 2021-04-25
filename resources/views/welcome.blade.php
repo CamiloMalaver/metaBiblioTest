@@ -12,13 +12,13 @@
     <body>
         <div class="container">
             <main class="form-signin">
-                <form method="POST" action="/create">
+                <form method="POST" action="" id="form1">
                 @csrf
                 
                 <h1 class="h3 mb-3 fw-normal">Metabiblioteca</h1>
                 
                 <div class="form-floating">
-                    <input type="number" class="form-control" name="isbn" placeholder="isbn" required>
+                    <input type="number" class="form-control" name="isbn" placeholder="isbn" id="isbn" required>
                     <label for="floatingInput">ISBN</label>
                 </div>
                 <br>
@@ -32,6 +32,13 @@
         </div>
         
         
-        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            $('#isbn').keyup(function(){
+                $('#form1').attr("action", 'books/create/'+ $(this).val());
+            });
+        });
+    </script>
     </body>
 </html>

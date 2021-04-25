@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Books;
 use App\Models\Authors;
 use App\Models\Book_Authors;
+use App\Http\Resources\BookCollection;
 use Log;
 
 class BookController extends Controller
@@ -18,7 +19,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return new BookCollection(Books::paginate(2));
     }
 
     /**
@@ -50,7 +51,7 @@ class BookController extends Controller
                     }     
                     return json_encode([['Status'=>'Record saved.']]);
                 }else{
-                    return json_encode([['Status'=>'Record already exists.']]);
+                    return json_encode([['Status'=>'Record already exists.']]); 
                 }                  
                 
 
