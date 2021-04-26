@@ -1,19 +1,19 @@
 <h2>Versions</h2>
 [
-    Laravel Version = Laravel Framework 8.38.0,
+    Laravel Version = Laravel Framework 8.38.0,<br>
     PHP Version = PHP 7.3.12,
 ]
 <hr>
 <h2>How to run</h2>
 
 <strong>Download repository and install dependences via composer</strong>
-    -git clone https://github.com/CamiloMalaver/metaBiblioTest.git,
-    -composer install
+    -git clone https://github.com/CamiloMalaver/metaBiblioTest.git,<br>
+    -composer install<br>
 <strong>Run application</strong>
-    -php artisan serve
+    -php artisan serve<br>
 
 <h2>Avaible routes</h2>
-    <strong>-post</strong>('books/create/{isbn}'(Creates a new book giving isbn),
-    <strong>-post</strong>('books/delete/{isbn}(Deletes a book giving the isbn)',
-    <strong>-get</strong>('books'(Lists all books),
+    <strong>-post</strong>('books/create/{isbn}'(Creates a new book giving isbn),<br>
+    <strong>-post</strong>('books/delete/{isbn}(Deletes a book giving the isbn)',<br>
+    <strong>-get</strong>('books'(Lists all books),<br>
     <strong>-get</strong>('books/{isbn}(Returns a book giving isbn)'
