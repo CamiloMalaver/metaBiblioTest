@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Book_Authors extends Model
 {
     use HasFactory;
-    protected $table = 'books_authors';
+    protected $table = 'book_author';
     public $timestamps = false;
 
-    function __construct($book_id, $author_id){
-        $this->book_id = $book_id;
-        $this->author_id = $author_id;
+    function __construct($book_isbn, $author_id){
+        $this->books_isbn = $book_isbn;
+        $this->authors_id = $author_id;
     }
 }

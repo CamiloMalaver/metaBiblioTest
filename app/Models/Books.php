@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Books extends Model
 {
     protected $table = 'books';
+    protected $primaryKey = 'isbn';
     public $timestamps = false;
     public $incrementing = false;
 
@@ -17,4 +18,9 @@ class Books extends Model
         $this->title = $title;
         $this->cover = $cover;
     }
+
+    function authors() {
+        return $this->belongsToMany(Authors::class, 'book_author');
+    }
+
 }

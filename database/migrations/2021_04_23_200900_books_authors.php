@@ -13,13 +13,14 @@ class BooksAuthors extends Migration
      */
     public function up()
     {
-        Schema::create('books_authors', function (Blueprint $table) {
-            $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('author_id');
+        Schema::create('book_author', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('books_isbn');
+            $table->unsignedBigInteger('authors_id');
             
-            $table->foreign('book_id')->references('isbn')->on('books')->onDelete('cascade');
-            $table->foreign('author_id')->references('id')->on('authors');
-            $table->primary(['book_id', 'author_id']);
+            $table->foreign('books_isbn')->references('isbn')->on('books')->onDelete('cascade');
+            $table->foreign('authors_id')->references('id')->on('authors');
+            $table->unique(['books_isbn', 'authors_id']);
         });
     }
 

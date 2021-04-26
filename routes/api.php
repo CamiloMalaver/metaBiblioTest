@@ -23,3 +23,4 @@ Route::get('/', function () {
 Route::post('books/create/{isbn}', [BookController::class, 'create']);
 Route::post('books/delete/{isbn}', [BookController::class, 'destroy']);
 Route::get('books', [BookController::class, 'index']);
+Route::get('books/{isbn}', [BookController::class, 'show']);

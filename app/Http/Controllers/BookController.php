@@ -8,6 +8,7 @@ use App\Models\Books;
 use App\Models\Authors;
 use App\Models\Book_Authors;
 use App\Http\Resources\BookCollection;
+use SimpleXMLElement;
 use Log;
 
 class BookController extends Controller
@@ -72,9 +73,30 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($isbn)
     {
-        //
+
+        if(Books::where('isbn', $isbn)->exists()){
+            $result = Books::find($isbn)->load('authors');            
+            return $result;
+        }else{
+            return json_encode([['Result'=>'Book not found.']]);
+        }
+        
+        //$authors = $result->authors;
+        
+        // This function create a xml object with element root.
+        //$xml = new SimpleXMLElement('<root/>');
+
+        // This function resursively added element
+        // of array to xml document
+        //array_walk_recursive((array)$result, array ($xml, 'addChild'));
+
+        // This function prints xml document.
+        //print $xml->asXML();
+
+        
+       
     }
 
 
